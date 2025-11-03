@@ -88,3 +88,220 @@
 
     /* --- Utilities --- */
     .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .spacer { height: 12px; }
+    .hide-sm { display: block; }
+
+    /* --- Responsive --- */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .hide-sm { display: none; }
+    }
+
+    /* --- Accessibility helpers --- */
+    .skip-link { position: absolute; left: -999px; top: -999px; }
+    .skip-link:focus { left: 12px; top: 12px; background: var(--accent); color: #fff; padding: 6px 10px; border-radius: 8px; }
+
+    /* --- Pill list --- */
+    .pills { display: flex; gap: 8px; flex-wrap: wrap; }
+    .pill { border: 1px solid var(--border); background: var(--card); border-radius: 999px; padding: 6px 10px; font-size: 13px; }
+
+    /* --- Icons --- */
+    .icon { width: 18px; height: 18px; display: inline-block; vertical-align: -3px; }
+
+  </style>
+  <script>
+    // Minimal dark/light toggle with localStorage
+    (function() {
+      const key = "theme";
+      const saved = localStorage.getItem(key);
+      if (saved === "light") document.documentElement.classList.add("light");
+      function toggleTheme() {
+        document.documentElement.classList.toggle("light");
+        localStorage.setItem(key, document.documentElement.classList.contains("light") ? "light" : "dark");
+      }
+      window.toggleTheme = toggleTheme;
+    })();
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ricky Leung",
+    "jobTitle": "Product Manager",
+    "url": "https://yourusername.github.io/",
+    "sameAs": [
+      "https://www.linkedin.com/in/yourprofile",
+      "https://github.com/yourusername"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <header aria-label="Site header">
+    <div class="container nav" role="navigation">
+      <div class="brand">Ricky Leung</div>
+      <div class="right">
+        <a href="#projects">Projects</a>
+        <a href="#cases">Case Studies</a>
+        <a href="#writing" class="hide-sm">Writing</a>
+        <a href="#contact">Contact</a>
+        <button class="btn small" onclick="toggleTheme()" aria-label="Toggle theme">🌓</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container" tabindex="-1">
+    <section class="hero" aria-label="Intro">
+      <div class="hero-grid">
+        <div>
+          <div class="tag">Product Management Portfolio</div>
+          <h1>Building lovable products that move the business.</h1>
+          <p class="lead">I’m a PM focused on fintech, data, and AI‑assisted workflows. I turn fuzzy problems into shipped outcomes—from discovery and PRDs to MVPs, growth experiments, and scale.</p>
+          <div class="row">
+            <a class="btn" href="#cases">📁 View case studies</a>
+            <a class="btn" href="resume.pdf">📄 Download résumé</a>
+          </div>
+          <div class="spacer"></div>
+          <div class="pills" aria-label="Skills">
+            <span class="pill">Discovery & Research</span>
+            <span class="pill">PRD & Specs</span>
+            <span class="pill">AI/ML</span>
+            <span class="pill">Fintech & Payments</span>
+            <span class="pill">Growth & Experiments</span>
+            <span class="pill">Analytics</span>
+          </div>
+        </div>
+        <div>
+          <div class="hero-cards">
+            <div class="card">
+              <div class="tag">Outcome</div>
+              <div class="kpi">+42%</div>
+              <div class="meta">Activation lift from onboarding experiment</div>
+            </div>
+            <div class="card">
+              <div class="tag">Scale</div>
+              <div class="kpi">$1.2B</div>
+              <div class="meta">Annualized payment volume influenced</div>
+            </div>
+            <div class="card">
+              <div class="tag">Impact</div>
+              <div class="kpi">-37%</div>
+              <div class="meta">Time‑to‑quote reduced via automation</div>
+            </div>
+            <div class="card">
+              <div class="tag">Delight</div>
+              <div class="kpi">NPS 65</div>
+              <div class="meta">For launched vendor pay feature</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" aria-labelledby="projects-title">
+      <h2 class="section-title" id="projects-title">Selected Projects</h2>
+      <div class="grid-3">
+        <article class="card item">
+          <h3>Commercial Card Controls</h3>
+          <p class="meta">Visa · Spend controls, MCC limits, real‑time auth</p>
+          <p>Defined partner API contract, ran discovery with 12 customers, and shipped a v1 with granular controls; decreased out‑of‑policy spend by 23%.</p>
+          <a href="#" aria-label="Read more about Commercial Card Controls">Read more →</a>
+        </article>
+        <article class="card item">
+          <h3>Repair Comms Hub</h3>
+          <p class="meta">Homeward · Salesforce + Slack automation</p>
+          <p>Unified field‑service, pricing, and agent workflows. Cut listings time by 4.2 days and improved on‑time repairs by 18%.</p>
+          <a href="#" aria-label="Read more about Repair Comms Hub">Read more →</a>
+        </article>
+        <article class="card item">
+          <h3>Smart Wallet</h3>
+          <p class="meta">PayPal · Multi‑rail orchestration</p>
+          <p>Spec’d risk‑aware routing across ACH, RTP, and cards. Increased deposit success and reduced costs via dynamic network selection.</p>
+          <a href="#" aria-label="Read more about Smart Wallet">Read more →</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="cases" aria-labelledby="cases-title">
+      <h2 class="section-title" id="cases-title">Case Studies</h2>
+      <div class="grid-2">
+        <article class="card item">
+          <h3>AI‑Assisted Pricing for Home Repairs</h3>
+          <p class="meta">Discovery → PRD → MVP → Results</p>
+          <ul>
+            <li>Mapped lead‑to‑quote journey; identified 3 friction clusters.</li>
+            <li>Defined data sources; partnered with DS to model price bands.</li>
+            <li>Launched in 2 markets, A/B showed −37% time‑to‑quote.</li>
+          </ul>
+          <a href="#">Open case →</a>
+        </article>
+        <article class="card item">
+          <h3>Onboarding Experimentation Framework</h3>
+          <p class="meta">Hypothesis backlog · Metrics · Experiment ops</p>
+          <ul>
+            <li>Built activation metric and event taxonomy in Amplitude.</li>
+            <li>Partnered with Eng to add experiment flags.</li>
+            <li>Shipped 6 tests/quarter; +42% activation lift in Q3.</li>
+          </ul>
+          <a href="#">Open case →</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="writing" aria-labelledby="writing-title">
+      <h2 class="section-title" id="writing-title">Writing</h2>
+      <div class="grid-3">
+        <article class="card item">
+          <h3>PRDs that Don’t Suck</h3>
+          <p class="meta">Guide · 7 min read</p>
+          <p>My template for crisp scope, risks, and measurable outcomes.</p>
+          <a href="#">Read →</a>
+        </article>
+        <article class="card item">
+          <h3>Fintech Risk‑Routing 101</h3>
+          <p class="meta">Playbook · 9 min read</p>
+          <p>Choosing the right rail: cost, risk, and speed trade‑offs.</p>
+          <a href="#">Read →</a>
+        </article>
+        <article class="card item">
+          <h3>Discovery in 10 Customer Calls</h3>
+          <p class="meta">Process · 5 min read</p>
+          <p>How I structure problem interviews for signal over noise.</p>
+          <a href="#">Read →</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-title">
+      <h2 class="section-title" id="contact-title">Get in touch</h2>
+      <div class="card">
+        <div class="row">
+          <a class="btn" href="mailto:hello@yourdomain.com" aria-label="Email">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v11A2.5 2.5 0 0 1 19.5 20h-15A2.5 2.5 0 0 1 2 17.5v-11Zm2.4-.5 7.6 5 7.6-5H4.4Zm15.6 2.1-8 5.3-8-5.3V17.5c0 .55.45 1 1 1h14c.55 0 1-.45 1-1V8.1Z"/></svg>
+            Email
+          </a>
+          <a class="btn" href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V23h-4V8zM8 8h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V23h-4v-7.3c0-1.75-.03-4-2.44-4-2.44 0-2.82 1.9-2.82 3.87V23h-4V8z"/></svg>
+            LinkedIn
+          </a>
+          <a class="btn" href="https://github.com/yourusername" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.99 5.24.99 11.52c0 4.86 3.15 8.98 7.52 10.43.55.1.75-.24.75-.53 0-.27-.01-1.16-.02-2.11-3.06.66-3.71-1.3-3.71-1.3-.5-1.28-1.21-1.63-1.21-1.63-.99-.67.08-.66.08-.66 1.1.08 1.68 1.14 1.68 1.14.97 1.67 2.56 1.19 3.18.91.1-.7.38-1.19.69-1.47-2.44-.28-5-1.22-5-5.4 0-1.19.43-2.16 1.14-2.92-.11-.28-.5-1.4.11-2.91 0 0 .93-.3 3.05 1.12.88-.25 1.82-.38 2.76-.38.94 0 1.88.13 2.76.38 2.12-1.42 3.05-1.12 3.05-1.12.61 1.51.22 2.63.11 2.91.71.76 1.14 1.73 1.14 2.92 0 4.19-2.56 5.11-5.01 5.38.39.34.73 1 .73 2.02 0 1.46-.01 2.64-.01 3.01 0 .29.2.63.76.52 4.36-1.45 7.51-5.57 7.51-10.43C23.01 5.24 18.27.5 12 .5z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container" role="contentinfo">
+    <div>© <span id="year"></span> Ricky Leung · Built with semantic HTML & vanilla CSS. Hosted on GitHub Pages.</div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
